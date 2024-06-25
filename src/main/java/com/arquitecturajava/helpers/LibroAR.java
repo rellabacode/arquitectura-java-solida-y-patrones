@@ -1,6 +1,8 @@
 package com.arquitecturajava.helpers;
 
 import java.sql.ResultSet;
+import java.sql.SQLException;
+import java.util.ArrayList;
 
 public class LibroAR {
 
@@ -56,10 +58,18 @@ public class LibroAR {
     DatabaseHelper.executeUpdate(consultaInsercion, isbn, titulo, categoria);
   }
 
-  public static ResultSet buscarTodos() {
+  public static ArrayList<LibroAR> buscarTodos() throws Exception {
+    ArrayList<LibroAR> lista = new ArrayList<LibroAR>();
     String consulta = "SELECT * FROM libros";
     ResultSet resultSet = DatabaseHelper.executeQuery(consulta);
-    return resultSet;
-  }
+    while (resultSet.next()) {
+      lista.add(new LibroAR(resultSet.getString("isbn"), resultSet.getString("titulo"),
+          resultSet.getString("categoria")));
+    }
 
+    DatabaseHelper.close(resultSet.getStatement().getConnection(), resultSet.getStatement(),
+        resultSet);
+
+    return lista;
+  }
 }

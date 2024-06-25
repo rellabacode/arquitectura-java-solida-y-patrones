@@ -1,5 +1,6 @@
 <%@page import="com.arquitecturajava.helpers.DatabaseHelper"%>
 <%@page import="com.arquitecturajava.helpers.LibroAR"%>
+<%@page import="java.util.ArrayList"%>
 <%@ page import="java.sql.*"%>
 <%@ page language="java" contentType="text/html; charset=UTF-8"
 	pageEncoding="UTF-8"%>
@@ -14,19 +15,19 @@
 	//Obtener la categoría de libros de base de datos
 	String consultaCategoria = "SELECT distinct(categoria) FROM libros";
 	try {
-		ResultSet resultSet = DatabaseHelper.executeQuery(consultaCategoria);
+	  ResultSet resultSet = DatabaseHelper.executeQuery(consultaCategoria);
 
-		//Mostrar el listado de libros en una tabla
-		out.println("<select name='categoria'>");
-		while (resultSet.next()) {
-			String categoria = resultSet.getString("categoria");
-			out.println("<option>" + categoria + "</option>");
-		}
-		out.println("</select>");
-		
+	  //Mostrar el listado de libros en una tabla
+	  out.println("<select name='categoria'>");
+	  while (resultSet.next()) {
+	    String categoria = resultSet.getString("categoria");
+	    out.println("<option>" + categoria + "</option>");
+	  }
+	  out.println("</select>");
+
 	} catch (Exception e) {
-		out.println("<p>Error al obtener las categorías</p>");
-		e.printStackTrace();
+	  out.println("<p>Error al obtener las categorías</p>");
+	  e.printStackTrace();
 	}
 	%>
 
@@ -36,28 +37,26 @@
 	String consulta = "SELECT * FROM libros";
 
 	try {
-		ResultSet resultSet = LibroAR.buscarTodos();
+	  ArrayList<LibroAR> listaLibros = LibroAR.buscarTodos();
 
-		// Mostrar el listado de libros en una tabla 
-		out.println("<h2>Lista de Libros</h2>");
-		out.println("<table border='1'>");
-		out.println("<tr><th>ISBN</th><th>Título</th><th>Categoría</th></tr>");
+	  // Mostrar el listado de libros en una tabla 
+	  out.println("<h2>Lista de Libros</h2>");
+	  out.println("<table border='1'>");
+	  out.println("<tr><th>ISBN</th><th>Título</th><th>Categoría</th></tr>");
 
-		//Recorrer los resultados y mostrar la tabla    
-		while (resultSet.next()) {
-			String isbn = resultSet.getString("isbn");
-			String titulo = resultSet.getString("titulo");
-			String categoria = resultSet.getString("categoria");
-			out.println("<tr><td>" + isbn + "</td><td>" + titulo + "</td><td>" + categoria + "</td></tr>");
-		}
-		out.println("</table>");
+	  //Recorrer los resultados y mostrar la tabla
+	  for (LibroAR libro : listaLibros) {
+	    out.println("<tr><td>" + libro.getIsbn() + "</td><td>" + libro.getTitulo() + "</td><td>"
+	        + libro.getCategoria() + "</td></tr>");
+	  }
+	  out.println("</table>");
 
-		//Cerrar la conexión y el PreparedStatement
-		//DatabaseHelper.close(connection, statement, resultSet)
+	  //Cerrar la conexión y el PreparedStatement
+	  //DatabaseHelper.close(connection, statement, resultSet)
 
 	} catch (Exception e) {
-		out.println("<p>Error al obtener el listado de libros.</p>");
-		e.printStackTrace();
+	  out.println("<p>Error al obtener el listado de libros.</p>");
+	  e.printStackTrace();
 	}
 	%>
 	<a href='formularionuevolibro.jsp'>Nuevo</a>
