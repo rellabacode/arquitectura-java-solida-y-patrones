@@ -11,10 +11,10 @@
 		<label for="isbn">ISBN:</label>
 		<input type="text" name="isbn" required><br>
 		
-		<label for="titulo">Título:</label>
+		<label for="titulo">T&�acute;tulo:</label>
 		<input type="text" name="titulo" required><br>
 		
-		<label for="categoria">Categoría:</label>
+		<label for="categoria">Categor&iacute;a:</label>
 		<input type="text" name="categoria" required><br>
 		
 		<input type="submit" value="Guardar libro">
