@@ -17,7 +17,8 @@ String titulo = request.getParameter("titulo");
 String categoria = request.getParameter("categoria");
 
 //realizo la consulta usando el DBHelper y el codigo queda simplificado
-LibroAR.insertar(isbn, titulo, categoria);
+LibroAR libro = new LibroAR(isbn, titulo, categoria);
+libro.insertar();
 response.sendRedirect("listalibros.jsp");
 
 %>
