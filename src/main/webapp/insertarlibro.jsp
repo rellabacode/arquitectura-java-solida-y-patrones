@@ -31,9 +31,9 @@ try{
 		preparedStatement.setString(3, categoria);
 			
 		//Ejecutar la inserción
-		out.println("<p>Insertando libro.</p>");
 		preparedStatement.executeUpdate();
-		out.println("<p>Libro insertado exitosamente.</p>");
+		//out.println("<p>Libro insertado exitosamente.</p>");
+		response.sendRedirect("listalibros.jsp");
 		
 	}catch(SQLException e){
 		out.println("<p>Error al insertar el libro.</p>" + e.toString());
