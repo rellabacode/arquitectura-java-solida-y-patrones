@@ -41,10 +41,16 @@ public class LibroAR {
     this.categoria = categoria;
   }
 
-  public static ResultSet buscarTodasLasCategorias() {
+  public static ArrayList<String> buscarTodasLasCategorias() throws Exception {
+    ArrayList<String> lista = new ArrayList<String>();
     String consultaCategoria = "SELECT distinct(categoria) FROM libros";
     ResultSet resultSet = DatabaseHelper.executeQuery(consultaCategoria);
-    return resultSet;
+    while (resultSet.next()) {
+      lista.add(resultSet.getString("categoria"));
+    }
+    DatabaseHelper.close(resultSet.getStatement().getConnection(), resultSet.getStatement(),
+        resultSet);
+    return lista;
   }
 
   public static ResultSet buscarTodosPorCategoria(String categoria) {

@@ -12,15 +12,12 @@
 </head>
 <body>
 	<%
-	//Obtener la categoría de libros de base de datos
-	String consultaCategoria = "SELECT distinct(categoria) FROM libros";
 	try {
-	  ResultSet resultSet = DatabaseHelper.executeQuery(consultaCategoria);
+	  ArrayList<String> listaCategorias = LibroAR.buscarTodasLasCategorias();
 
 	  //Mostrar el listado de libros en una tabla
 	  out.println("<select name='categoria'>");
-	  while (resultSet.next()) {
-	    String categoria = resultSet.getString("categoria");
+	  for(String categoria: listaCategorias){
 	    out.println("<option>" + categoria + "</option>");
 	  }
 	  out.println("</select>");
