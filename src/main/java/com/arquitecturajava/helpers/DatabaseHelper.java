@@ -82,7 +82,7 @@ public class DatabaseHelper {
       for (int i = 0; i < parameters.length; i++) {
         preparedStatement.setObject(i + 1, parameters[i]);
       }
-
+      
       // Ejecutar la consulta de modificación
       preparedStatement.executeUpdate();
 

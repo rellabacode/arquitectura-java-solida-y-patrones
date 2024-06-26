@@ -1,6 +1,7 @@
 package com.arquitecturajava.helpers;
 
 import java.sql.ResultSet;
+import java.sql.SQLException;
 import java.util.ArrayList;
 import java.util.List;
 
@@ -61,20 +62,28 @@ public class LibroAR {
 
   public void insertar() {
     String consultaInsercion = "INSERT INTO libros (isbn, titulo, categoria) VALUES(?, ?, ?)";
-    DatabaseHelper.executeUpdate(consultaInsercion, getIsbn(), getTitulo(), getCategoria());
+    DatabaseHelper.executeUpdate(consultaInsercion, getIsbn(), getTitulo(), getCategoria());    
   }
 
-  public static List<LibroAR> buscarTodos() throws Exception {
+  public static List<LibroAR> buscarTodos() {
     List<LibroAR> lista = new ArrayList<LibroAR>();
     String consulta = "SELECT * FROM libros";
     ResultSet resultSet = DatabaseHelper.executeQuery(consulta);
-    while (resultSet.next()) {
-      lista.add(new LibroAR(resultSet.getString("isbn"), resultSet.getString("titulo"),
-          resultSet.getString("categoria")));
+    try {
+      while (resultSet.next()) {
+        lista.add(new LibroAR(resultSet.getString("isbn"), resultSet.getString("titulo"),
+            resultSet.getString("categoria")));
+      }
+    } catch (SQLException e) {
+      throw new RuntimeException(e);
+    } finally {
+      try {
+        DatabaseHelper.close(resultSet.getStatement().getConnection(), resultSet.getStatement(),
+            resultSet);
+      } catch (SQLException e) {
+        throw new RuntimeException(e);
+      }
     }
-
-    DatabaseHelper.close(resultSet.getStatement().getConnection(), resultSet.getStatement(),
-        resultSet);
 
     return lista;
   }
