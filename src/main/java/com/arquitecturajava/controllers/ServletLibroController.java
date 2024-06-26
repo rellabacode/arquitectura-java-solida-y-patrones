@@ -19,6 +19,20 @@ public class ServletLibroController extends HttpServlet {
    */
   private static final long serialVersionUID = -1979102707959943514L;
 
+  
+  private void listaLibros(HttpServletRequest req, HttpServletResponse resp) throws Exception {
+    // Delega en la capa de persistencia
+    List<String> listaCategorias = LibroAR.buscarTodasLasCategorias();
+    req.setAttribute("listaCategorias", listaCategorias);
+
+    List<LibroAR> listaLibros = LibroAR.buscarTodos();
+    req.setAttribute("listaLibros", listaLibros);
+
+    RequestDispatcher despachador = null;
+    despachador = req.getRequestDispatcher("listalibros.jsp");
+    despachador.forward(req, resp);
+  }
+  
 
   @Override
   protected void doGet(HttpServletRequest req, HttpServletResponse resp)
@@ -26,15 +40,7 @@ public class ServletLibroController extends HttpServlet {
     RequestDispatcher despachador = null;
     try {
       if (req.getParameter("accion") == null) {
-        // Delega en la capa de persistencia
-        List<String> listaCategorias = LibroAR.buscarTodasLasCategorias();
-        req.setAttribute("listaCategorias", listaCategorias);
-        
-        List<LibroAR> listaLibros = LibroAR.buscarTodos();
-        req.setAttribute("listaLibros", listaLibros);
-        
-        despachador = req.getRequestDispatcher("listalibros.jsp");
-        despachador.forward(req, resp);
+        listaLibros(req, resp);
 
       } else if (req.getParameter("accion").equals("formularionuevolibro")) {
         List<String> listaCategorias = LibroAR.buscarTodasLasCategorias();
@@ -58,6 +64,15 @@ public class ServletLibroController extends HttpServlet {
         despachador = req.getRequestDispatcher("listalibros.jsp");
         despachador.forward(req, resp);
       }
+
+      else if (req.getParameter("accion").equals("borrarlibro")) {
+        String isbn = req.getParameter("isbn");
+        LibroAR libroAR = new LibroAR(isbn);
+        libroAR.borrar();
+
+        listaLibros(req, resp);
+      }
+      
     } catch (Exception e) {
       e.printStackTrace();
     }
