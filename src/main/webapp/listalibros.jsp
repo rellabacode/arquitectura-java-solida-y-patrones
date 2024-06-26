@@ -12,7 +12,6 @@
 </head>
 <body>
 	<%
-	try {
 	  List<String> listaCategorias = LibroAR.buscarTodasLasCategorias();
 
 	  //Mostrar el listado de libros en una tabla
@@ -21,19 +20,12 @@
 	    out.println("<option>" + categoria + "</option>");
 	  }
 	  out.println("</select>");
-
-	} catch (Exception e) {
-	  out.println("<p>Error al obtener las categorías</p>");
-	  e.printStackTrace();
-	}
 	%>
-
 
 	<%
 	// Obtener el listado de libros desde la base de datos
 	String consulta = "SELECT * FROM libros";
 
-	try {
 	  List<LibroAR> listaLibros = LibroAR.buscarTodos();
 
 	  // Mostrar el listado de libros en una tabla 
@@ -50,11 +42,6 @@
 
 	  //Cerrar la conexión y el PreparedStatement
 	  //DatabaseHelper.close(connection, statement, resultSet)
-
-	} catch (Exception e) {
-	  out.println("<p>Error al obtener el listado de libros.</p>");
-	  e.printStackTrace();
-	}
 	%>
 	<a href='formularionuevolibro.jsp'>Nuevo</a>
 </body>
