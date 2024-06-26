@@ -5,11 +5,20 @@ import java.sql.SQLException;
 import java.util.ArrayList;
 import java.util.List;
 
+//Active Record Pattern
+//Capa de negocio
 public class LibroAR {
 
   private String isbn;
   private String titulo;
   private String categoria;
+
+  
+  
+  public LibroAR(String isbn) {
+    super();
+    this.isbn = isbn;
+  }
 
   public LibroAR(String isbn, String titulo, String categoria) {
     super();
@@ -42,6 +51,13 @@ public class LibroAR {
     this.categoria = categoria;
   }
 
+  //principio DRY
+  public void borrar() {
+    String consultaBorrado = "delete from libros where isbn=?";
+    DatabaseHelper.executeUpdate(consultaBorrado, getIsbn());
+  }
+
+
   public static List<String> buscarTodasLasCategorias() throws Exception {
     List<String> lista = new ArrayList<String>();
     String consultaCategoria = "SELECT distinct(categoria) FROM libros";
@@ -60,11 +76,13 @@ public class LibroAR {
     return resultSet;
   }
 
+  //principio DRY
   public void insertar() {
     String consultaInsercion = "INSERT INTO libros (isbn, titulo, categoria) VALUES(?, ?, ?)";
-    DatabaseHelper.executeUpdate(consultaInsercion, getIsbn(), getTitulo(), getCategoria());    
+    DatabaseHelper.executeUpdate(consultaInsercion, getIsbn(), getTitulo(), getCategoria());
   }
 
+  //Programar hacia la interfaz
   public static List<LibroAR> buscarTodos() {
     List<LibroAR> lista = new ArrayList<LibroAR>();
     String consulta = "SELECT * FROM libros";
@@ -75,6 +93,7 @@ public class LibroAR {
             resultSet.getString("categoria")));
       }
     } catch (SQLException e) {
+      //no hace falta capturarlas en cada capa
       throw new RuntimeException(e);
     } finally {
       try {

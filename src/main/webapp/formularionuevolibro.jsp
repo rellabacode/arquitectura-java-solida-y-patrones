@@ -5,6 +5,7 @@
 <%@ taglib prefix="c" uri="jakarta.tags.core" %>
 
 <%
+/* Carga de datos */
 List<String> listaCategorias = LibroAR.buscarTodasLasCategorias();
 List<LibroAR> listaLibros = LibroAR.buscarTodos();
 

@@ -7,6 +7,7 @@
 <head>
 <meta charset="UTF-8">
 <title>Guardar Libro</title>
+<!-- Responsabilidad: Persistencia -->
 </head>
 <body>
 
@@ -19,6 +20,7 @@ String categoria = request.getParameter("categoria");
 //realizo la consulta usando el DBHelper y el codigo queda simplificado
 LibroAR libro = new LibroAR(isbn, titulo, categoria);
 libro.insertar();
+/* Resp. de control */
 response.sendRedirect("listalibros.jsp");
 %>
 </body>

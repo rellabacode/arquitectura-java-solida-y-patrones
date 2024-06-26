@@ -7,6 +7,8 @@ import java.sql.ResultSet;
 import java.sql.SQLException;
 import java.sql.Statement;
 
+//Creada aplicando el principio DRY
+//Capa de persistencia - Responsabilidad: persistir los datos 
 public class DatabaseHelper {
   private static final String JDBC_URL = "jdbc:mysql://127.0.0.1:3306/biblioteca";
   private static final String USUARIO = "root";

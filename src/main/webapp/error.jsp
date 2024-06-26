@@ -5,7 +5,8 @@
 <html>
 <head>
 <meta charset="UTF-8">
-<title>Insert title here</title>
+<title>Error</title>
+<!-- Principio DRY - jsps delegan -->
 </head>
 <body>
 Ha ocurrido un error en la aplicación: <%=exception.getMessage()%>

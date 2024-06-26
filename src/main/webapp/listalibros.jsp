@@ -6,6 +6,7 @@
 <%@ page language="java" contentType="text/html; charset=UTF-8"
 	pageEncoding="UTF-8"%>
 <%
+/* Carga de datos */
 List<String> listaCategorias = LibroAR.buscarTodasLasCategorias();
 List<LibroAR> listaLibros = LibroAR.buscarTodos(); 
 request.setAttribute("listaCategorias", listaCategorias);
@@ -16,8 +17,10 @@ request.setAttribute("listaLibros", listaLibros);
 <head>
 <meta charset="UTF-8">
 <title>Listado de Libros</title>
+<!-- Responsabilidad: Presentación -->
 </head>
 <body>
+<!-- Impresión de datos  -->
 	<select name='categoria'>
 		<c:forEach var="categoria" items="${listaCategorias}">
 			<option value="${categoria}">${categoria}</option>
@@ -38,10 +41,13 @@ request.setAttribute("listaLibros", listaLibros);
 				<td>${libro.isbn}</td>
 				<td>${libro.titulo}</td>
 				<td>${libro.categoria}</td>
+				<!-- Resp. de control -->
+				<td><a href="borrarlibro.jsp?isbn=${libro.isbn}">borrar</a></td>
 			</tr>
 		</c:forEach>
 	</table>
 
+<!-- Resp. de control -->
 	<a href='formularionuevolibro.jsp'>Nuevo</a>
 </body>
 </html>
