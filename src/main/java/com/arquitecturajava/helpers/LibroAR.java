@@ -1,7 +1,6 @@
 package com.arquitecturajava.helpers;
 
 import java.sql.ResultSet;
-import java.sql.SQLException;
 import java.util.ArrayList;
 import java.util.List;
 
@@ -62,7 +61,7 @@ public class LibroAR {
 
   public void insertar() {
     String consultaInsercion = "INSERT INTO libros (isbn, titulo, categoria) VALUES(?, ?, ?)";
-    DatabaseHelper.executeUpdate(consultaInsercion, isbn, titulo, categoria);
+    DatabaseHelper.executeUpdate(consultaInsercion, getIsbn(), getTitulo(), getCategoria());
   }
 
   public static List<LibroAR> buscarTodos() throws Exception {
