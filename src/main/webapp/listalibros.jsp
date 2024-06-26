@@ -1,5 +1,5 @@
 <%@page import="com.arquitecturajava.helpers.DatabaseHelper"%>
-<%@page import="com.arquitecturajava.helpers.LibroAR"%>
+<%@page import="com.arquitecturajava.helpers.Libro"%>
 <%@page import="java.util.List"%>
 <%@ page import="java.sql.*"%>
 <%@ taglib prefix="c" uri="jakarta.tags.core"%>
