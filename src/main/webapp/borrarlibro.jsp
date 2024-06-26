@@ -14,7 +14,7 @@
 	LibroAR libroAR = new LibroAR(isbn);
 	libroAR.borrar();
 	/* Resp. de control */
-	response.sendRedirect("listalibros.jsp");
+	response.sendRedirect("?accion=listar");
 	%>
 </body>
 </html>

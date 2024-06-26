@@ -5,19 +5,13 @@
 <%@ taglib prefix="c" uri="jakarta.tags.core"%>
 <%@ page language="java" contentType="text/html; charset=UTF-8"
 	pageEncoding="UTF-8"%>
-<%
-/* Carga de datos */
-List<String> listaCategorias = LibroAR.buscarTodasLasCategorias();
-List<LibroAR> listaLibros = LibroAR.buscarTodos(); 
-request.setAttribute("listaCategorias", listaCategorias);
-request.setAttribute("listaLibros", listaLibros);
-%>	
+
 <!DOCTYPE html>
 <html>
 <head>
 <meta charset="UTF-8">
 <title>Listado de Libros</title>
-<!-- Responsabilidad: Presentación -->
+<!-- Responsabilidad: PRESENTACIÓN -->
 </head>
 <body>
 <!-- Impresión de datos  -->
@@ -42,12 +36,12 @@ request.setAttribute("listaLibros", listaLibros);
 				<td>${libro.titulo}</td>
 				<td>${libro.categoria}</td>
 				<!-- Resp. de control -->
-				<td><a href="borrarlibro.jsp?isbn=${libro.isbn}">borrar</a></td>
+				<td><a href="?accion=borrarlibro&isbn=${libro.isbn}">borrar</a></td>
 			</tr>
 		</c:forEach>
 	</table>
 
 <!-- Resp. de control -->
-	<a href='formularionuevolibro.jsp'>Nuevo</a>
+	<a href='?accion=formularionuevolibro'>Nuevo</a>
 </body>
 </html>

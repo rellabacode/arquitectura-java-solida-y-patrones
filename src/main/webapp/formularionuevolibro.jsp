@@ -4,16 +4,6 @@
 <%@ page import="com.arquitecturajava.helpers.LibroAR" %>
 <%@ taglib prefix="c" uri="jakarta.tags.core" %>
 
-<%
-/* Carga de datos */
-List<String> listaCategorias = LibroAR.buscarTodasLasCategorias();
-List<LibroAR> listaLibros = LibroAR.buscarTodos();
-
-//Para poder usarlo con JSTL
-request.setAttribute("listaCategorias", listaCategorias);
-%>
-
-
 <!DOCTYPE html>
 <html>
 <head>
@@ -23,7 +13,7 @@ request.setAttribute("listaCategorias", listaCategorias);
 </head>
 <body>
 	<h2>Formulario de libro</h2>
-	<form action="/web1/insertarlibro.jsp" method="post">
+	<form action="?accion=insertarlibro" method="post">
 		<label for="isbn">ISBN:</label>
 		<input type="text" name="isbn" required><br>
 		
