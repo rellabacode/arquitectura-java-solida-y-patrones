@@ -6,8 +6,10 @@
 
 <%
 List<String> listaCategorias = LibroAR.buscarTodasLasCategorias();
-request.setAttribute("listaCategorias", listaCategorias);
+List<LibroAR> listaLibros = LibroAR.buscarTodos();
 
+//Para poder usarlo con JSTL
+request.setAttribute("listaCategorias", listaCategorias);
 %>
 
 
