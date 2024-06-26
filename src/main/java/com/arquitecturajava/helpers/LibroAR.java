@@ -3,6 +3,7 @@ package com.arquitecturajava.helpers;
 import java.sql.ResultSet;
 import java.sql.SQLException;
 import java.util.ArrayList;
+import java.util.List;
 
 public class LibroAR {
 
@@ -41,8 +42,8 @@ public class LibroAR {
     this.categoria = categoria;
   }
 
-  public static ArrayList<String> buscarTodasLasCategorias() throws Exception {
-    ArrayList<String> lista = new ArrayList<String>();
+  public static List<String> buscarTodasLasCategorias() throws Exception {
+    List<String> lista = new ArrayList<String>();
     String consultaCategoria = "SELECT distinct(categoria) FROM libros";
     ResultSet resultSet = DatabaseHelper.executeQuery(consultaCategoria);
     while (resultSet.next()) {
@@ -64,8 +65,8 @@ public class LibroAR {
     DatabaseHelper.executeUpdate(consultaInsercion, isbn, titulo, categoria);
   }
 
-  public static ArrayList<LibroAR> buscarTodos() throws Exception {
-    ArrayList<LibroAR> lista = new ArrayList<LibroAR>();
+  public static List<LibroAR> buscarTodos() throws Exception {
+    List<LibroAR> lista = new ArrayList<LibroAR>();
     String consulta = "SELECT * FROM libros";
     ResultSet resultSet = DatabaseHelper.executeQuery(consulta);
     while (resultSet.next()) {

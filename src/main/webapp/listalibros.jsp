@@ -1,6 +1,6 @@
 <%@page import="com.arquitecturajava.helpers.DatabaseHelper"%>
 <%@page import="com.arquitecturajava.helpers.LibroAR"%>
-<%@page import="java.util.ArrayList"%>
+<%@page import="java.util.List"%>
 <%@ page import="java.sql.*"%>
 <%@ page language="java" contentType="text/html; charset=UTF-8"
 	pageEncoding="UTF-8"%>
@@ -13,7 +13,7 @@
 <body>
 	<%
 	try {
-	  ArrayList<String> listaCategorias = LibroAR.buscarTodasLasCategorias();
+	  List<String> listaCategorias = LibroAR.buscarTodasLasCategorias();
 
 	  //Mostrar el listado de libros en una tabla
 	  out.println("<select name='categoria'>");
@@ -34,7 +34,7 @@
 	String consulta = "SELECT * FROM libros";
 
 	try {
-	  ArrayList<LibroAR> listaLibros = LibroAR.buscarTodos();
+	  List<LibroAR> listaLibros = LibroAR.buscarTodos();
 
 	  // Mostrar el listado de libros en una tabla 
 	  out.println("<h2>Lista de Libros</h2>");
