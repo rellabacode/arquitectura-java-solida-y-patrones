@@ -1,5 +1,16 @@
 <%@ page import="jakarta.servlet.http.HttpServlet"%>
+<%@ page import="java.util.List"%>
 <%@ page contentType="text/html;charset=UTF-8" language="java"%>
+<%@ page import="com.arquitecturajava.helpers.LibroAR" %>
+<%@ taglib prefix="c" uri="jakarta.tags.core" %>
+
+<%
+List<String> listaCategorias = LibroAR.buscarTodasLasCategorias();
+request.setAttribute("listaCategorias", listaCategorias);
+
+%>
+
+
 <!DOCTYPE html>
 <html>
 <head>
@@ -17,8 +28,11 @@
 		<input type="text" name="titulo" required><br>
 		
 		<label for="categoria">Categor&iacute;a:</label>
-		<input type="text" name="categoria" required><br>
-		
+		<select name="categoria">
+			<c:forEach var="categoria" items="${listaCategorias}">
+				<option value="${categoria}">${categoria}</option>
+			</c:forEach>
+		</select><br>
 		<input type="submit" value="Guardar libro">
 	</form>
 </body>
