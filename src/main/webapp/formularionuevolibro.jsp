@@ -13,6 +13,7 @@
 </head>
 <body>
 	<h2>Formulario de libro</h2>
+	<img alt="" src="images/cover.png">
 	<form action="?accion=insertarlibro" method="post">
 		<label for="isbn">ISBN:</label>
 		<input type="text" name="isbn" required><br>
