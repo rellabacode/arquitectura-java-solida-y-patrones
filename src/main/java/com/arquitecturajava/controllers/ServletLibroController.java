@@ -7,6 +7,7 @@ import com.arquitecturajava.controllers.commands.FiltroLibroCategoriaCommand;
 import com.arquitecturajava.controllers.commands.FormularioNuevoLibroCommand;
 import com.arquitecturajava.controllers.commands.InsertarLibroCommand;
 import com.arquitecturajava.controllers.commands.ListaLibrosCommand;
+import com.arquitecturajava.controllers.commands.Router;
 import jakarta.servlet.ServletException;
 import jakarta.servlet.annotation.WebServlet;
 import jakarta.servlet.http.HttpServlet;
@@ -30,25 +31,10 @@ public class ServletLibroController extends HttpServlet {
   @Override
   protected void doGet(HttpServletRequest req, HttpServletResponse resp)
       throws ServletException, IOException {
-    Command comando = null;
 
     try {
-      if (req.getParameter("accion") == null) {
-        comando = new ListaLibrosCommand();
-
-      } else if (req.getParameter("accion").equals("filtrocategorialibro")) {
-        comando = new FiltroLibroCategoriaCommand();
-      } else if (req.getParameter("accion").equals("formularionuevolibro")) {
-        comando = new FormularioNuevoLibroCommand();
-
-      } else if (req.getParameter("accion").equals("insertarlibro")) {
-        comando = new InsertarLibroCommand();
-      }
-
-      else if (req.getParameter("accion").equals("borrarlibro")) {
-        comando = new BorrarLibroCommand();
-      }
-      comando.execute(req, resp);
+      //todo delegado en el router
+      Router.getCommand(req.getParameter("accion")).execute(req, resp);
 
     } catch (Exception e) {
       throw new RuntimeException();
