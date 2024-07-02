@@ -1,11 +1,11 @@
-package com.arquitecturajava.repositories;
+package com.rellabacode.repositories;
 
 import java.sql.ResultSet;
 import java.sql.SQLException;
 import java.util.ArrayList;
 import java.util.List;
-import com.arquitecturajava.helpers.DatabaseHelper;
-import com.arquitecturajava.helpers.Libro;
+import com.rellabacode.helpers.DatabaseHelper;
+import com.rellabacode.helpers.Libro;
 
 // Patrón Repository para cumplir ISP sobre la clase libro
 public class LibroRepository {

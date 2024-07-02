@@ -1,7 +1,7 @@
 /**
  * 
  */
-package com.arquitecturajava.controllers.commands;
+package com.rellabacode.controllers.commands;
 
 import java.util.HashMap;
 import java.util.Map;

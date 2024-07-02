@@ -1,7 +1,7 @@
 <%@ page import="jakarta.servlet.http.HttpServlet"%>
 <%@ page import="java.util.List"%>
 <%@ page contentType="text/html;charset=UTF-8" language="java"%>
-<%@ page import="com.arquitecturajava.helpers.Libro" %>
+<%@ page import="com.rellabacode.helpers.Libro" %>
 <%@ taglib prefix="c" uri="jakarta.tags.core" %>
 
 <!DOCTYPE html>

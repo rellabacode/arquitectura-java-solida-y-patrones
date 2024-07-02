@@ -1,4 +1,4 @@
-package com.arquitecturajava.helpers;
+package com.rellabacode.helpers;
 
 import java.sql.Connection;
 import java.sql.DriverManager;

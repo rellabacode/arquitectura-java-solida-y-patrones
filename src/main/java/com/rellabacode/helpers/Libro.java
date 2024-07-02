@@ -1,4 +1,4 @@
-package com.arquitecturajava.helpers;
+package com.rellabacode.helpers;
 
 //Active Record Pattern
 //Capa de negocio

@@ -1,10 +1,10 @@
 /**
  * 
  */
-package com.arquitecturajava.controllers.commands;
+package com.rellabacode.controllers.commands;
 
-import com.arquitecturajava.helpers.Libro;
-import com.arquitecturajava.repositories.LibroRepository;
+import com.rellabacode.helpers.Libro;
+import com.rellabacode.repositories.LibroRepository;
 import jakarta.servlet.http.HttpServletRequest;
 import jakarta.servlet.http.HttpServletResponse;
 
