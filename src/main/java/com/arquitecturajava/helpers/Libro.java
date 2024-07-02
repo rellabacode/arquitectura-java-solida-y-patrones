@@ -1,11 +1,5 @@
 package com.arquitecturajava.helpers;
 
-import java.sql.ResultSet;
-import java.sql.SQLException;
-import java.util.ArrayList;
-import java.util.List;
-
-
 //Active Record Pattern
 //Capa de negocio
 public class Libro {

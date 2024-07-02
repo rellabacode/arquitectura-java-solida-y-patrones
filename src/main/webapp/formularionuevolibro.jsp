@@ -13,7 +13,6 @@
 </head>
 <body>
 	<h2>Formulario de libro</h2>
-	<img alt="" src="images/cover.png">
 	<form action="?accion=insertarlibro" method="post">
 		<label for="isbn">ISBN:</label>
 		<input type="text" name="isbn" required><br>
@@ -26,6 +25,7 @@
 			<c:forEach var="categoria" items="${listaCategorias}">
 				<option value="${categoria}">${categoria}</option>
 			</c:forEach>
+			<c:out value="paco" default=""></c:out>
 		</select><br>
 		<input type="submit" value="Guardar libro">
 	</form>

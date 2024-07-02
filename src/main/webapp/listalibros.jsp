@@ -12,12 +12,29 @@
 <meta charset="UTF-8">
 <title>Listado de Libros</title>
 <!-- Responsabilidad: PRESENTACIÓN -->
+<script type="text/javascript">
+	function redirectToURL(){
+		var categoria = document.getElementsByName("categoria")[0].value;
+		if (categoria != undefined){
+			window.location.href = window.location.origin + window.location.pathname + "?accion=filtrocategorialibro&categoria="+categoria;
+		}
+	}
+
+</script>
+
 </head>
 <body>
 <!-- Impresión de datos  -->
-	<select name='categoria'>
+	<select name='categoria' onchange="redirectToURL()">
 		<c:forEach var="categoria" items="${listaCategorias}">
-			<option value="${categoria}">${categoria}</option>
+			<c:choose>
+				<c:when test="${filtroCategoria != null && filtroCategoria.equals(categoria)}">
+					<option value="${categoria}" selected>${categoria}</option>	
+				</c:when>
+				<c:otherwise>
+					<option value="${categoria}">${categoria}</option>
+				</c:otherwise>
+			</c:choose>
 		</c:forEach>
 	</select>
 	

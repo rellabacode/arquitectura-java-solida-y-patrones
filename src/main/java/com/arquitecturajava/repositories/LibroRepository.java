@@ -7,15 +7,16 @@ import java.util.List;
 import com.arquitecturajava.helpers.DatabaseHelper;
 import com.arquitecturajava.helpers.Libro;
 
-//Patrón Repository para cumplir ISP sobre la clase libro
+// Patrón Repository para cumplir ISP sobre la clase libro
 public class LibroRepository {
   public List<String> buscarTodasLasCategorias() throws Exception {
     List<String> lista = new ArrayList<String>();
-    String consultaCategoria = "SELECT distinct(categoria) FROM libros";
+    lista.add("");
+    String consultaCategoria = "SELECT distinct(categoria) FROM libros ORDER BY categoria asc";
     ResultSet resultSet = DatabaseHelper.executeQuery(consultaCategoria);
     while (resultSet.next()) {
       lista.add(resultSet.getString("categoria"));
-    }
+    }    
     DatabaseHelper.close(resultSet.getStatement().getConnection(), resultSet.getStatement(),
         resultSet);
     return lista;
@@ -28,9 +29,9 @@ public class LibroRepository {
   }
 
   // Programar hacia la interfaz
-  public  List<Libro> buscarTodos() {
+  public List<Libro> buscarTodos() {
     List<Libro> lista = new ArrayList<Libro>();
-    String consulta = "SELECT * FROM libros";
+    String consulta = "SELECT * FROM libros ORDER BY titulo asc";
     ResultSet resultSet = DatabaseHelper.executeQuery(consulta);
     try {
       while (resultSet.next()) {
@@ -54,8 +55,15 @@ public class LibroRepository {
 
   public List<Libro> buscarTodosPorCategoria(String categoria) throws SQLException {
     List<Libro> lista = new ArrayList<Libro>();
-    String consultaCategoria = "SELECT * FROM libros where categoria=?";
-    ResultSet resultSet = DatabaseHelper.executeQuery(consultaCategoria, categoria);
+    String consultaCategoria = "SELECT * FROM libros where categoria=? ORDER BY titulo asc";
+    ResultSet resultSet = null;
+
+    if (!"".equals(categoria)) {
+      resultSet = DatabaseHelper.executeQuery(consultaCategoria, categoria);
+    } else {
+      consultaCategoria = "SELECT * FROM libros ORDER BY titulo asc";
+      resultSet = DatabaseHelper.executeQuery(consultaCategoria);
+    }
 
     while (resultSet.next()) {
       lista.add(new Libro(resultSet.getString("isbn"), resultSet.getString("titulo"),
