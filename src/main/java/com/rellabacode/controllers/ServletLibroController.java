@@ -1,12 +1,6 @@
 package com.rellabacode.controllers;
 
 import java.io.IOException;
-import com.rellabacode.controllers.commands.BorrarLibroCommand;
-import com.rellabacode.controllers.commands.Command;
-import com.rellabacode.controllers.commands.FiltroLibroCategoriaCommand;
-import com.rellabacode.controllers.commands.FormularioNuevoLibroCommand;
-import com.rellabacode.controllers.commands.InsertarLibroCommand;
-import com.rellabacode.controllers.commands.ListaLibrosCommand;
 import com.rellabacode.controllers.commands.Router;
 import jakarta.servlet.ServletException;
 import jakarta.servlet.annotation.WebServlet;

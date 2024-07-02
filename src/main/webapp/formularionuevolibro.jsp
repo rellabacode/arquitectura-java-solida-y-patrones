@@ -1,8 +1,8 @@
 <%@ page import="jakarta.servlet.http.HttpServlet"%>
 <%@ page import="java.util.List"%>
-<%@ page contentType="text/html;charset=UTF-8" language="java"%>
-<%@ page import="com.rellabacode.helpers.Libro" %>
+<%@ page import="com.rellabacode.helpers.Libro"%>
 <%@ taglib prefix="c" uri="jakarta.tags.core" %>
+<%@ page contentType="text/html;charset=UTF-8" language="java"%>
 
 <!DOCTYPE html>
 <html>
@@ -25,7 +25,7 @@
 			<c:forEach var="categoria" items="${listaCategorias}">
 				<option value="${categoria}">${categoria}</option>
 			</c:forEach>
-			<c:out value="paco" default=""></c:out>
+			
 		</select><br>
 		<input type="submit" value="Guardar libro">
 	</form>
